@@ -76,14 +76,10 @@ def evaluate_data(sample_name, dataset, tracker, visualize=False):
     info = dataset.get_sequence_info(seq_id)
     bboxes = info['bbox'].numpy()
     out_of_view = info['visible'].numpy()
-    print("Read Images")
-    # frames = dataset.get_frames(seq_id, None, info)
-    print("Fnished Reading Images")
     # bboxes[:, 2] += bboxes[:, 0]
     # bboxes[:, 3] += bboxes[:, 1]
     font = cv2.FONT_HERSHEY_SIMPLEX
     init_bbox = bboxes[0]
-    print(init_bbox)
     prev_frame_time = 0
     seq_path = dataset._get_sequence_path(seq_id)
     frames = range(len(os.listdir(seq_path)))
@@ -94,7 +90,6 @@ def evaluate_data(sample_name, dataset, tracker, visualize=False):
     for frame_id, bbox in zip(frames, bboxes):
 
         img_path = os.path.join(seq_path, '{:08}.jpg'.format(frame_id + 1))
-        print(img_path)
         frame = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
         if init:
             init_state = [int(init_bbox[0]), int(init_bbox[1]), int(init_bbox[2]), int(init_bbox[3])]
@@ -129,7 +124,6 @@ def evaluate_data(sample_name, dataset, tracker, visualize=False):
                     current_rect_with_noise=current_rect, prev_rect=prev_rect,
                     pred_bbox=predicted_box
                 )
-                print(smoothed_bbox)
                 smoothed_bbox = smoothed_bbox[0]
             except:
                 smoothed_bbox = predicted_box
