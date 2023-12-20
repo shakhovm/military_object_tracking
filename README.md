@@ -5,19 +5,32 @@
 
 Цей репозиторій використовує бібліотеку [Pytracking](https://github.com/visionml/pytracking). Тому інструкції для встановлення середовища варто використати звідти.
 
+Також потрібно виконати наступні команди
+```bash
+mkdir ltr/external
+cd ltr/external
+git clone https://github.com/vacancy/PreciseRoIPooling
+cd ../..
+```
 Натреновані моделі та приклади даних можна завантажити [тут](https://drive.google.com/drive/folders/1mLHYTOGFyuE-Y0X2yEH4TImzGmtn_kOh?usp=sharing)
+
+Для того, щоб перетворити відно в директорію з зображеннями потрібно ввести команда
+
+```bash
+python labeling_utils/video_to_imgs.py data
+```
 
 **Робота програми**
 
 Для запуску програми на відео потрібно ввести наступну команду:
 ```bash
-python tracker.py шлях_до_відео atom
+python tracker.py data/005.mp4 atom
 ```
 Для оцінки трекера та його роботи разом з фазовою кореляцією та фільтром Калмана потрібно ввести команду :
 ```
-python model_evaluator.py data/train/augmented_007 1 atom
+python model_evaluator.py data/005 1 atom
 ```
-data/train/augmented_007 - шлях до послідовності зображень, 1 - включити візуалізацію, atom - архітектура моделі (опції tomp, atom, dimp)
+data/005 - шлях до послідовності зображень, 1 - включити візуалізацію, atom - архітектура моделі (опції tomp, atom, dimp)
 
 **Важливі файли**
 
