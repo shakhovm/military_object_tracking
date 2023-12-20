@@ -7,9 +7,6 @@ path = sys.argv[1]
 
 videos = list(filter(lambda x: x.endswith(".mp4"), os.listdir(path)))
 videos.sort(key=lambda f: os.stat(os.path.join(path, f)).st_size, reverse=False)
-print(videos)
-cap = cv2.VideoCapture(path)
-"0000000"
 for video in videos:
     i = 1
     video_path = os.path.join(path, video)
@@ -26,7 +23,7 @@ for video in videos:
 
         img_name = "00000000"[:-number_len] + str(i) + ".jpg"
         # print(img_name)
-        cv2.imwrite(os.path.join(path, dir_path, img_name), frame)
+        cv2.imwrite(os.path.join(dir_path, img_name), frame)
         i += 1
         # cv2.imshow("Frame", frame)
         # key = cv2.waitKey(1)
