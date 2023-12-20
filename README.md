@@ -26,6 +26,8 @@ python labeling_utils/video_to_imgs.py data
 ```bash
 python tracker.py data/005.mp4 atom
 ```
+Після цього потрібно мишкою обвести об'єкт на натиснути ENTER. Для виходу з програму можна натиснути 'q'
+
 Для оцінки трекера та його роботи разом з фазовою кореляцією та фільтром Калмана потрібно ввести команду :
 ```
 python model_evaluator.py data/005 1 atom
